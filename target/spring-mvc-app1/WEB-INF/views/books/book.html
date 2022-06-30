@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Книга</title>
+    <link th:href="@{/static/css/book.css}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="container">
+    <div class="link_box">
+        <a class="link" th:href="@{/library/books}">К списку книг</a>
+        <a class="link" th:href="@{/library/people}">К списку читателей</a>
+        <a class="link" th:href="@{/library}">В библиотеку</a>
+    </div>
+
+    <h3 th:text="${book.getTitle() + ', '}">VALUE</h3>
+    <h2 th:text="${book.getAuthor() + ', ' + book.getYear()}">VALUE</h2>
+
+    <a class="text" th:if="${book.getPersonId()}"
+       th:text="${'Книга сейчас у: '}">value</a>
+
+    <a class="reader" th:if="${book.getPersonId()}"
+       th:text="${reader.getFullName()}">value</a>
+
+    <form th:method="PUT" th:action="@{/library/books/{id}(id=${book.getId()})}">
+        <input class="free" type="submit" value="Освободить книгу"
+               th:if="${book.getPersonId()}"/>
+    </form>
+
+    <p class="text2" th:unless="${book.getPersonId()}">Эта книга сейчас свободна. Кому ее назначить?</p>
+    <form th:unless="${book.getPersonId()}"
+          th:method="PATCH" th:action="@{/library/books/{id}/add(id=${book.getId()})}">
+        <label class="choose" for="person">Выберете человека: </label>
+        <select class="reader2" th:object="${person}" th:field="*{id}" id="person">
+            <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getFullName()}"></option>
+        </select>
+
+        <input class="apply" type="submit" value="Назначить книгу"/>
+    </form>
+
+    <hr>
+
+    <form th:method="GET" th:action="@{/library/books/{id}/edit(id=${book.getId()})}">
+        <input class="upd" type="submit" value="Редактировать"/>
+    </form>
+
+    </br>
+
+    <form th:method="DELETE" th:action="@{/library/books/{id}(id=${book.getId()})}">
+        <input class="del" type="submit" value="Удалить"/>
+    </form>
+</div>
+
+</body>
+</html>

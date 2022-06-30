@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
+body {
+    background: url('../images/book.jpg') center no-repeat;
+    background-size: cover;
+
+    font-size: 22px;
+    font-weight: 100;
+    color: #fcf4f4;
+
+    font-family: 'Montserrat', 'Raleway', sans-serif;
+}
+
+.container {
+    width: 1251px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.link {
+    display: inline-block;
+    vertical-align: top;
+    horiz-align: right;
+    margin: 0 0 40px 0;
+
+    color: deeppink;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    transition: color 0.2s linear;
+}
+
+.link:hover {
+    color: #000;
+}
+
+.link_box {
+    display: flex;
+    justify-content: space-between;
+}
+
+h3 {
+    font-weight: 100;
+    font-size: 60px;
+    margin: 11px auto 0 auto;
+    line-height: 0.9;
+}
+
+h2 {
+    font-weight: 100;
+    font-size: 34px;
+    margin: 12px auto 40px auto;
+    line-height: 0.5;
+}
+
+.text {
+    font-size: 22px;
+}
+
+.reader {
+    font-size: 22px;
+    font-weight: 200;
+}
+
+.free {
+    /*background: #757676;*/
+    background: transparent;
+    color: #111111;
+    font-size: 22px;
+    font-weight: 100;
+    border-radius: 15px 15px 15px 15px;
+
+    font-family: 'Montserrat', 'Raleway', sans-serif;
+}
+
+.text2 {
+    color: #c2c7cc;
+    font-size: 22px;
+    margin: 40px auto 0px auto;
+}
+
+.choose {
+    font-size: 22px;
+}
+
+.apply {
+    /*background: #757676;*/
+    background: transparent;
+    color: #fcf4f4;
+    font-size: 22px;
+    font-weight: 100;
+    border-radius: 15px 15px 15px 15px;
+
+    font-family: 'Montserrat', 'Raleway', sans-serif;
+}
+
+.reader2 {
+    font-size: 22px;
+    font-weight: 100;
+    background: #b5babd;
+    color: #111111;
+    border-radius: 15px 15px 15px 15px;
+
+    font-family: 'Montserrat', 'Raleway', sans-serif;
+}
+
+.upd {
+    /*background: #757676;*/
+    background: transparent;
+    color: #fcf4f4;
+
+    font-size: 22px;
+    font-weight: 100;
+    border-radius: 15px 15px 15px 15px;
+
+    font-family: 'Montserrat', 'Raleway', sans-serif;
+}
+
+.del {
+    /*background: #757676;*/
+    background: transparent;
+    color: deeppink;
+
+
+    font-size: 22px;
+    font-weight: 100;
+    border-radius: 15px 15px 15px 15px;
+
+    font-family: 'Montserrat', 'Raleway', sans-serif;
+}

@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
+body {
+    background: url('../images/books.jpg') center no-repeat;
+    background-size: cover;
+
+    font-size: 22px;
+    font-weight: 100;
+    color: #fcf4f4;
+
+    font-family: 'Montserrat', 'Raleway', sans-serif;
+}
+
+h3 {
+    font-weight: 100;
+    font-size: 60px;
+    margin: auto auto 20px auto;
+}
+
+.container {
+    width: 1251px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.link {
+    display: inline-block;
+    vertical-align: top;
+    horiz-align: right;
+    margin: 0 0 40px 0;
+
+    color: deeppink;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    transition: color 0.2s linear;
+}
+
+.link:hover {
+    color: #000;
+}
+
+.link_box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.book_link {
+    color: #fcf4f4;
+    text-decoration: none;
+
+    transition: color 0.2s linear;
+}
+
+.book_link:hover {
+    color: deeppink;
+}
+
+.add {
+    color: #00ffb9;
+    text-decoration: none;
+    margin: auto auto 100px auto;
+    font-size: 34px;
+    font-weight: 100;
+
+    transition: color 0.2s linear;
+}
+
+.add:hover {
+    color: #036248;
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание человека</title>
+    <link th:href="@{/static/css/personNew.css}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="container">
+    <form th:method="POST" th:action="@{/library/people}" th:object="${person}">
+        <label class="label" for="fullName">Введите ФИО: </label>
+        <input class="input" type="text" th:field="*{fullName}" id="fullName"/>
+        <div class="err" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">error</div>
+        <br/>
+        <label class="label" for="birthYear">Введите год рождения: </label>
+        <input class="input" type="text" th:field="*{birthYear}" id="birthYear"/>
+        <div class="err" th:if="${#fields.hasErrors('birthYear')}" th:errors="*{birthYear}">error</div>
+        <br/>
+        <input class="cre" type="submit" value="Создать!"/>
+    </form>
+
+    </br>
+    <a class="back" th:href="@{/library/people}">← Назад к списку читателей</a>
+</div>
+
+</body>
+</html>

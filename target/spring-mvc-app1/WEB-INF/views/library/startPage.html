@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Библиотека</title>
+    <link th:href="@{/static/css/startPage.css}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="container">
+    <h3>Рады приветствовать Вас в библиотеке!</h3>
+
+    <div class="link_box">
+        <a class="link" th:href="@{/library/books}">К списку книг</a>
+        <a class="link" th:href="@{/library/people}">К списку читателей</a>
+    </div>
+
+</div>
+
+</body>
+</html>
