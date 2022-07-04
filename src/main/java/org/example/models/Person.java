@@ -1,23 +1,34 @@
 package org.example.models;
 
+import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.List;
 
+@Entity
+@Table(name = "person")
 public class Person {
+    @Id
+    @Column(name = "person_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "full_name")
     @NotEmpty(message = "Name should not be empty")
     @Size(min = 2, max = 50, message = "Name has incorrect size!")
     private String fullName;
 
+    @Column(name = "birth_year")
     @Min(value = 1900, message = "Birth year should be greater than 1900")
     @Max(value = 2015, message = "Birth year should be less than 2015")
     private int birthYear;
 
+    @OneToMany(mappedBy = "reader")
+    private List<Book> books;
+
     public Person() {
     }
 
-    public Person(int id, String fullName, int birthYear) {
-        this.id = id;
+    public Person(String fullName, int birthYear) {
         this.fullName = fullName;
         this.birthYear = birthYear;
 
@@ -45,6 +56,14 @@ public class Person {
 
     public int getBirthYear() {
         return birthYear;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
 }

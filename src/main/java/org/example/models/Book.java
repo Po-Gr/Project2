@@ -1,33 +1,46 @@
 package org.example.models;
 
+import org.hibernate.validator.constraints.br.CPF;
+
+import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+@Entity
+@Table(name = "book")
 public class Book {
+    @Id
+    @Column(name = "book_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "title")
     @NotEmpty(message = "Book title should not be empty")
     @Size(min = 2, max = 50, message = "Book itle has incorrect size!")
     private String title;
 
+    @Column(name = "author")
     @NotEmpty(message = "Author name should not be empty")
     @Size(min = 2, max = 50, message = "Author name has incorrect size!")
     private String author;
 
+    @Column(name = "year")
     @Min(value = 1, message = "Book year should be greater than 1")
     private int year;
-    private int personId;
+
+    @ManyToOne
+    @JoinColumn(name = "person_id", referencedColumnName = "person_id")
+    private Person reader;
 
     public Book() {
     }
 
-    public Book(int id, String title, String author, int year, int personId) {
-        this.id = id;
+    public Book(String title, String author, int year) {
         this.title = title;
         this.author = author;
         this.year = year;
-        this.personId = personId;
     }
 
     public int getId() {
@@ -58,10 +71,19 @@ public class Book {
         this.year = year;
     }
 
-    public int getPersonId() {
-        return personId;
+    public Person getReader() {
+        return reader;
     }
-    public void setPersonId(int personId) {
-        this.personId = personId;
+
+    public void setReader(Person reader) {
+        this.reader = reader;
     }
+
+    //
+//    public int getPersonId() {
+//        return personId;
+//    }
+//    public void setPersonId(int personId) {
+//        this.personId = personId;
+//    }
 }
