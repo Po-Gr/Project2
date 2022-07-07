@@ -9,20 +9,20 @@
 
 <div class="container">
     <div class="link_box">
-        <a class="link" th:href="@{/library/books}">К списку книг</a>
         <a class="link" th:href="@{/library/people}">К списку читателей</a>
+        <a class="link" th:href="@{/library/books}">К списку книг</a>
         <a class="link" th:href="@{/library}">В библиотеку</a>
     </div>
 
     <h3 th:text="${person.getFullName() + ', ' + person.getBirthYear()}">VALUE</h3>
 
-    <p class="none_book" th:if="${books.isEmpty()}">Человек пока не взял ни одной книги</p>
-    <hr th:unless="${books.isEmpty()}">
+    <p class="none_book" th:if="${empty}">Человек пока не взял ни одной книги</p>
+    <hr th:unless="${empty}">
 
-    <a class="with_book" th:unless="${books.isEmpty()}">Книги:</a>
+    <a class="with_book" th:unless="${empty}">Книги:</a>
     <p class="books" th:each="book :${books}">
         <a th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}"
-           th:unless="${books.isEmpty()}">Есть книги</a>
+           th:unless="${empty}">Есть книги</a>
     </p>
 
     <hr>

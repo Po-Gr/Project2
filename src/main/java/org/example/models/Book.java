@@ -1,9 +1,6 @@
 package org.example.models;
 
-import org.hibernate.validator.constraints.br.CPF;
-
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -78,12 +75,4 @@ public class Book {
     public void setReader(Person reader) {
         this.reader = reader;
     }
-
-    //
-//    public int getPersonId() {
-//        return personId;
-//    }
-//    public void setPersonId(int personId) {
-//        this.personId = personId;
-//    }
 }

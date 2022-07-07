@@ -22,7 +22,7 @@ public class Person {
     @Max(value = 2015, message = "Birth year should be less than 2015")
     private int birthYear;
 
-    @OneToMany(mappedBy = "reader")
+    @OneToMany(mappedBy = "reader", fetch = FetchType.EAGER)
     private List<Book> books;
 
     public Person() {
