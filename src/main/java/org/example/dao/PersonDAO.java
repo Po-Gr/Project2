@@ -49,7 +49,6 @@ public class PersonDAO {
     @Transactional
     public void delete(int id) {
         Session session = sessionFactory.getCurrentSession();
-//        session.remove(id);
         session.remove(session.get(Person.class, id));
     }
 
