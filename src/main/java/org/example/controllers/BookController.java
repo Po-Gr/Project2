@@ -4,6 +4,10 @@ import org.example.dao.BookDAO;
 import org.example.dao.PersonDAO;
 import org.example.models.Book;
 import org.example.models.Person;
+import org.example.repositories.BooksRepository;
+import org.example.repositories.PeopleRepository;
+import org.example.services.BooksService;
+import org.example.services.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,26 +19,27 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/library/books")
 public class BookController {
-    private final BookDAO bookDAO;
-    private final PersonDAO personDAO;
+    private final BooksService booksService;
+    private final PeopleService peopleService;
 
     @Autowired
-    public BookController(BookDAO bookDAO, PersonDAO personDAO) {
-        this.bookDAO = bookDAO;
-        this.personDAO = personDAO;
+    public BookController(BooksService booksService, PeopleService peopleService) {
+        this.booksService = booksService;
+        this.peopleService = peopleService;
     }
 
     @GetMapping()
-    public String getAllBooks(Model model) {
-        model.addAttribute("books", bookDAO.getAllBooks());
+    public String getAllBooks(Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "books_per_page", required = false) Integer booksPerPage,
+                              @RequestParam(value = "sort_by_year",required = false) Boolean sortByYear) {
+        model.addAttribute("books", booksService.getAllBooks(page, booksPerPage, sortByYear));
         return "books/allBooks";
     }
 
     @GetMapping("/{id}")
     public String getBook(@PathVariable("id")int id, Model model, @ModelAttribute("person") Person person) {
-        model.addAttribute("book", bookDAO.getBook(id));
-        model.addAttribute("people", personDAO.getAllPeople());
-        model.addAttribute("reader", bookDAO.getBook(id).getReader());
+        model.addAttribute("book", booksService.getBook(id));
+        model.addAttribute("people", peopleService.getAllPeople());
+        model.addAttribute("reader", booksService.getBook(id).getReader());
         return "books/book";
     }
 
@@ -46,49 +51,43 @@ public class BookController {
     @PostMapping()
     public String create(@ModelAttribute("book") @Valid Book book,
                          BindingResult bindingResult) {
-//        personValidator.validate(person, bindingResult);
-
         if (bindingResult.hasErrors())
             return "books/new";
-
-        bookDAO.save(book);
+        booksService.save(book);
         return "redirect:";
     }
 
     @GetMapping("/{id}/edit")
     public String edit(@PathVariable("id")int id, Model model) {
-        model.addAttribute("book", bookDAO.getBook(id));
+        model.addAttribute("book", booksService.getBook(id));
         return "books/edit";
     }
 
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("book") @Valid Book book, BindingResult bindingResult,
                          @PathVariable("id")int id) {
-
-//        personValidator.validate(person, bindingResult);
-
         if (bindingResult.hasErrors())
             return "books/edit";
 
-        bookDAO.update(book, id);
+        booksService.update(book, id);
         return "redirect:";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id")int id) {
-        bookDAO.delete(id);
+        booksService.delete(id);
         return "redirect:.";
     }
 
     @PutMapping("/{id}")
     public String setFree(@PathVariable("id")int id) {
-        bookDAO.setFree(id);
+        booksService.setFree(id);
         return "redirect:";
     }
 
     @PatchMapping("/{id}/add")
     public String setBookToPerson(@ModelAttribute("person") Person person, @PathVariable("id")int id) {
-        bookDAO.setBookToPerson(id, person.getId());
+        booksService.setBookToPerson(id, person.getId());
         return "redirect:.";
     }
 }
