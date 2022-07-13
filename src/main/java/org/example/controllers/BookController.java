@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/library/books")
@@ -29,9 +30,29 @@ public class BookController {
     }
 
     @GetMapping()
-    public String getAllBooks(Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "books_per_page", required = false) Integer booksPerPage,
+    public String getAllBooks(@ModelAttribute("searchBy") Book book, Model model, @RequestParam(value = "page", required = false) Integer page,  // посмотреть без атрибута модели
+                              @RequestParam(value = "books_per_page", required = false) Integer booksPerPage,
                               @RequestParam(value = "sort_by_year",required = false) Boolean sortByYear) {
-        model.addAttribute("books", booksService.getAllBooks(page, booksPerPage, sortByYear));
+        String sortBy = "title";
+        if (sortByYear == null)
+            sortByYear = false;
+        if (sortByYear)
+            sortBy = "year";
+        if (page == null)
+            page = 0;
+        if (booksPerPage == null)
+            booksPerPage = 15;
+        model.addAttribute("books", booksService.getAllBooks(page, booksPerPage, sortBy));
+
+
+        model.addAttribute("page", page);
+        model.addAttribute("booksPerPage", booksPerPage);
+        model.addAttribute("sortByYear", sortByYear);
+
+
+        model.addAttribute("hasNext", page < booksService.getAllBooks().size() / booksPerPage);
+        model.addAttribute("hasPrevious", page > 0);
+
         return "books/allBooks";
     }
 
@@ -89,5 +110,31 @@ public class BookController {
     public String setBookToPerson(@ModelAttribute("person") Person person, @PathVariable("id")int id) {
         booksService.setBookToPerson(id, person.getId());
         return "redirect:.";
+    }
+
+//    @GetMapping("/search")
+//    public String searchByTitle(Model model, @RequestParam(value = "startWith", required = false) String startWith) {
+//        return "books/search";
+//    }
+
+//    @GetMapping("/search")
+//    public String searchByTitle(@ModelAttribute("searchBy") Book book, Model model) {
+//        List<Book> books = booksService.getBooksByTitleStarting(book.getTitle());
+//
+//        model.addAttribute("books", books);
+//        return "books/search";
+//    }
+
+    @GetMapping("/search")
+    public String searchByTitle(Model model, @RequestParam(value = "title", required = false) String startWith,
+                                @ModelAttribute("searchBy") @Valid Book book, BindingResult bindingResult) {
+
+        if(startWith != null && !startWith.equals("")) {
+            List<Book> books = booksService.getBooksByTitleStarting(startWith);
+            model.addAttribute("books", books);
+            if (bindingResult.hasErrors())
+                return "books/search";
+        }
+        return "books/search";
     }
 }

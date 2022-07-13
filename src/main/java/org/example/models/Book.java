@@ -15,7 +15,7 @@ public class Book {
 
     @Column(name = "title")
     @NotEmpty(message = "Book title should not be empty")
-    @Size(min = 2, max = 50, message = "Book itle has incorrect size!")
+//    @Size(min = 2, max = 50, message = "Book title has incorrect size!")
     private String title;
 
     @Column(name = "author")

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Список книг</title>
     <link th:href="@{/static/css/allBooks.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -15,10 +16,36 @@
 
     <h3>Книги доступные для чтения</h3>
 
+    <form th:method="GET" th:action="@{/library/books/search}" th:object="${searchBy}">
+        <input class="input" type="search" th:field="*{title}" id="title" placeholder="Введите название.. "/>
+        <input class="search" type="submit" value="🔍"/>
+
+<!--        value="🔍"-->
+    </form>
+
+<!--    <form th:method="GET" th:action="@{/library/books/search}" th:object="${searchBy}">-->
+<!--        <label class="label" for="value">Введите название книги: </label>-->
+<!--        <input class="input" type="search" th:field="*{value}" id="value">-->
+<!--        <input class="search" type="submit" value="Искать"/>-->
+<!--    </form>-->
+
+<!--    <form th:method="GET" th:action="@{/library/books/search}" th:object="${searchBy}">-->
+<!--        <label for="title">Введите название книги: </label>-->
+<!--        <input class="input" type="text" th:field="*{title}" id="title"/>-->
+
+<!--        <input class="search" type="submit" value="🔍"/>-->
+<!--    </form>-->
+
     <div th:each="book :${books}">
         <a class="book_link" th:href="@{/library/books/{id}(id=${book.getId()})}"
            th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">book</a>
     </div>
+
+    <a class="link2" th:if="${hasPrevious}"
+       th:href="@{/library/books?page={page}&books_per_page={books_per_page}&sort_by_year={sort_by_year}(page=${page - 1},books_per_page=${booksPerPage},sort_by_year=${sortByYear})}">←previous</a>
+
+    <a class="link2" th:if="${hasNext}"
+       th:href="@{/library/books?page={page}&books_per_page={books_per_page}&sort_by_year={sort_by_year}(page=${page + 1},books_per_page=${booksPerPage},sort_by_year=${sortByYear})}">next→</a>
 
     <hr>
     <br>

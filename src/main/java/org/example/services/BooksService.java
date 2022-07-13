@@ -22,7 +22,11 @@ public class BooksService {
         this.bookDAO = bookDAO;
     }
 
-    public List<Book> getAllBooks(Object page, Object booksPerPage, Object sortByYear) {
+    public List<Book> getAllBooks() {
+        return booksRepository.findAll();
+    }
+
+    public List<Book> getAllBooks(int page, int booksPerPage, String sortBy) {
 //        if (page == null){
 //            if (sortByYear == null)
 //                return booksRepository.findAll(Sort.by("title"));
@@ -37,23 +41,30 @@ public class BooksService {
 //        }
 
 
-        String sortBy = "title";
-        Integer pageNum = 0;
-        Integer booksCount = 15;
 
-        if (sortByYear != null)
-            sortBy = "year";
-        if (page != null)
-            pageNum = (Integer) page;
-        if (booksPerPage != null)
-            booksCount = (Integer) booksPerPage;
+//        String sortBy = "title";
+//        Integer pageNum = 0;
+//        Integer booksCount = 15;
+//
+//        if (sortByYear != null)
+//            sortBy = "year";
+//        if (page != null)
+//            pageNum = (Integer) page;
+//        if (booksPerPage != null)
+//            booksCount = (Integer) booksPerPage;
+//
+//        return booksRepository.findAll(PageRequest.of(pageNum, booksCount, Sort.by(sortBy))).getContent();
 
-        return booksRepository.findAll(PageRequest.of(pageNum, booksCount, Sort.by(sortBy))).getContent();
+        return booksRepository.findAll(PageRequest.of(page, booksPerPage, Sort.by(sortBy))).getContent();
     }
 
     public Book getBook(int id) {
         Optional<Book> foundBook = booksRepository.findById(id);
         return foundBook.orElse(null);
+    }
+
+    public List<Book> getBooksByTitleStarting(String string) {
+        return booksRepository.findByTitleStartingWith(string);
     }
 
     @Transactional

@@ -17,10 +17,56 @@ h3 {
 }
 
 .container {
+    /*background-size: cover;*/
+    /*background-color: rgba(14, 13, 13, 0.5);*/
+
     width: 1251px;
     max-width: 1300px;
     margin: 0 auto;
 }
+
+.input {
+    /*width: 42px;*/
+    height: 49px;
+
+    font-size: 22px;
+    font-weight: 100;
+    /*background: #b5babd;*/
+    background-color: rgba(14, 13, 13, 0.5);
+    color: #000000;
+
+    border: none;
+    border-radius: 15px 15px 15px 15px;
+
+    font-family: 'Montserrat', 'Raleway', sans-serif;
+}
+
+.search {
+    width: 42px;
+    height: 42px;
+
+    font-size: 22px;
+    font-weight: 100;
+    background: transparent;
+    color: #00ffb9;
+
+    border: none;
+    border-radius: 15px 15px 15px 15px;
+
+    font-family: 'Montserrat', 'Raleway', sans-serif;
+}
+
+
+.text {
+    font-weight: 200;
+}
+
+.err {
+    color: deeppink;
+}
+
+
+
 
 .link {
     display: inline-block;
@@ -34,12 +80,22 @@ h3 {
 
     transition: color 0.2s linear;
 }
+.link2 {
+    color: #c2c7cc;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    transition: color 0.2s linear;
+}
 
 .link:hover {
     color: #000;
 }
 
 .link_box {
+    /*background-size: cover;*/
+    /*background-color: rgba(14, 13, 13, 0.5);*/
+
     display: flex;
     justify-content: space-between;
 }
@@ -52,6 +108,18 @@ h3 {
 }
 
 .book_link:hover {
+    color: deeppink;
+}
+
+.book_link2 {
+    font-size: 34px;
+    color: #fcf4f4;
+    text-decoration: none;
+
+    transition: color 0.2s linear;
+}
+
+.book_link2:hover {
     color: deeppink;
 }
 
