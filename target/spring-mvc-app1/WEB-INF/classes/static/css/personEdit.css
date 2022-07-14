@@ -21,10 +21,15 @@ body {
 }
 
 .input {
+    /*height: 49px;*/
+    width: 400px;
+
     font-size: 22px;
     font-weight: 100;
-    background: #b5babd;
-    color: #111111;
+    background-color: rgba(14, 13, 13, 0.5);
+    color: #ffffff;
+
+    border: none;
     border-radius: 15px 15px 15px 15px;
 
     font-family: 'Montserrat', 'Raleway', sans-serif;
