@@ -112,19 +112,6 @@ public class BookController {
         return "redirect:.";
     }
 
-//    @GetMapping("/search")
-//    public String searchByTitle(Model model, @RequestParam(value = "startWith", required = false) String startWith) {
-//        return "books/search";
-//    }
-
-//    @GetMapping("/search")
-//    public String searchByTitle(@ModelAttribute("searchBy") Book book, Model model) {
-//        List<Book> books = booksService.getBooksByTitleStarting(book.getTitle());
-//
-//        model.addAttribute("books", books);
-//        return "books/search";
-//    }
-
     @GetMapping("/search")
     public String searchByTitle(Model model, @RequestParam(value = "title", required = false) String startWith,
                                 @ModelAttribute("searchBy") @Valid Book book, BindingResult bindingResult) {

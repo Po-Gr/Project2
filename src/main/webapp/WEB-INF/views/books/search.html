@@ -15,11 +15,16 @@
 
     <h3>Книги доступные для чтения</h3>
 
+<!--    <form th:method="GET" th:action="@{/library/books/search}" th:object="${searchBy}">-->
+<!--        <label for="title">Введите название книги: </label>-->
+<!--        <input class="input" type="text" th:field="*{title}" id="title"/>-->
+<!--        <input class="search" type="submit" value="Искать"/>-->
+<!--        <div class="err" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">error</div>-->
+<!--    </form>-->
+
     <form th:method="GET" th:action="@{/library/books/search}" th:object="${searchBy}">
-        <label for="title">Введите название книги: </label>
-        <input class="input" type="text" th:field="*{title}" id="title"/>
-        <input class="search" type="submit" value="Искать"/>
-        <div class="err" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">error</div>
+        <input class="input" type="search" th:field="*{title}" id="title" placeholder="Введите название.. "/>
+        <input class="search" type="submit" value="🔍"/>
     </form>
 
     <p th:if="${books.isEmpty()}">Книг не найдено, проверьте Ваш запрос</p>

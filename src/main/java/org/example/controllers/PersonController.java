@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -38,6 +39,8 @@ public class PersonController {
         model.addAttribute("person", peopleService.getPerson(id));
         model.addAttribute("books", books);
         model.addAttribute("empty", books.isEmpty());
+
+        peopleService.someM(new Date(),id);
 
         return "people/person";
     }

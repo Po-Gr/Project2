@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -27,6 +28,7 @@ public class BookDAO {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Book book = entityManager.find(Book.class, id);
         book.setReader(null);
+        book.setTakenAt(null);
     }
 
     @Transactional
@@ -36,6 +38,7 @@ public class BookDAO {
         Person person = entityManager.find(Person.class, personId);
 
         book.setReader(person);
+        book.setTakenAt(new Date());
         person.getBooks().add(book);
     }
 }

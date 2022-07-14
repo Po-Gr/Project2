@@ -19,8 +19,6 @@
     <form th:method="GET" th:action="@{/library/books/search}" th:object="${searchBy}">
         <input class="input" type="search" th:field="*{title}" id="title" placeholder="Введите название.. "/>
         <input class="search" type="submit" value="🔍"/>
-
-<!--        value="🔍"-->
     </form>
 
 <!--    <form th:method="GET" th:action="@{/library/books/search}" th:object="${searchBy}">-->
