@@ -35,12 +35,12 @@ public class PersonController {
 
     @GetMapping("/{id}")
     public String getPerson(@PathVariable("id")int id, Model model) {
+        peopleService.isBookExpired(new Date(), id);
+
         List<Book> books = peopleService.getBooks(id);
         model.addAttribute("person", peopleService.getPerson(id));
         model.addAttribute("books", books);
         model.addAttribute("empty", books.isEmpty());
-
-        peopleService.someM(new Date(),id);
 
         return "people/person";
     }

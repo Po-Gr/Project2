@@ -16,29 +16,31 @@ import java.util.List;
 
 @Component
 public class BookDAO {
-    private final EntityManagerFactory entityManagerFactory;
+    private final EntityManager entityManager;
 
     @Autowired
-    public BookDAO(EntityManagerFactory entityManagerFactory) {
-        this.entityManagerFactory = entityManagerFactory;
+    public BookDAO(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
-
-    @Transactional
-    public void setFree(int id) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        Book book = entityManager.find(Book.class, id);
-        book.setReader(null);
-        book.setTakenAt(null);
-    }
-
-    @Transactional
-    public void setBookToPerson(int id, int personId) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        Book book = entityManager.find(Book.class, id);
-        Person person = entityManager.find(Person.class, personId);
-
-        book.setReader(person);
-        book.setTakenAt(new Date());
-        person.getBooks().add(book);
-    }
+//
+//    @Transactional
+//    public void setFree(int id) {
+//        Session session = entityManager.unwrap(Session.class);
+//
+//        Book book = session.get(Book.class, id);
+//        book.setReader(null);
+//        book.setTakenAt(null);
+//    }
+//
+//    @Transactional
+//    public void setBookToPerson(int id, int personId) {
+//        Session session = entityManager.unwrap(Session.class);
+//
+//        Book book = session.get(Book.class, id);
+//        Person person = session.get(Person.class, personId);
+//
+//        book.setReader(person);
+//        book.setTakenAt(new Date());
+//        person.getBooks().add(book);
+//    }
 }

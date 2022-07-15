@@ -2,12 +2,15 @@ package org.example.services;
 
 import org.example.dao.BookDAO;
 import org.example.models.Book;
+import org.example.models.Person;
 import org.example.repositories.BooksRepository;
+import org.example.repositories.PeopleRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,10 +19,12 @@ import java.util.Optional;
 public class BooksService {
     private final BooksRepository booksRepository;
     private final BookDAO bookDAO;
+    private final PeopleRepository peopleRepository;
 
-    public BooksService(BooksRepository booksRepository, BookDAO bookDAO) {
+    public BooksService(BooksRepository booksRepository, BookDAO bookDAO, PeopleRepository peopleRepository) {
         this.booksRepository = booksRepository;
         this.bookDAO = bookDAO;
+        this.peopleRepository = peopleRepository;
     }
 
     public List<Book> getAllBooks() {
@@ -84,13 +89,28 @@ public class BooksService {
 
     @Transactional
     public void setFree(int id) {
-        bookDAO.setFree(id);
+        Book book = getBook(id);
+        book.setReader(null);
+        book.setTakenAt(null);
     }
 
     @Transactional
     public void setBookToPerson(int id, int personId) {
-        bookDAO.setBookToPerson(id, personId);
+        Book book = getBook(id);
+        Person person = peopleRepository.findById(personId).orElse(null);
+
+        book.setReader(person);
+        book.setTakenAt(new Date());
+        person.getBooks().add(book);
     }
 
-
+//    @Transactional
+//    public void setFree(int id) {
+//        bookDAO.setFree(id);
+//    }
+//
+//    @Transactional
+//    public void setBookToPerson(int id, int personId) {
+//        bookDAO.setBookToPerson(id, personId);
+//    }
 }
