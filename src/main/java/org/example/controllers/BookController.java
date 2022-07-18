@@ -46,7 +46,7 @@ public class BookController {
         model.addAttribute("sortByYear", sortByYear);
 
 
-        model.addAttribute("hasNext", page < booksService.getAllBooks().size() / booksPerPage);
+        model.addAttribute("hasNext", page < booksService.getAllBooks().size() / (booksPerPage + 1));
         model.addAttribute("hasPrevious", page > 0);
 
         return "books/allBooks";
