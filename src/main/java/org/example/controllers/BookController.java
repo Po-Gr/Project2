@@ -1,11 +1,7 @@
 package org.example.controllers;
 
-import org.example.dao.BookDAO;
-import org.example.dao.PersonDAO;
 import org.example.models.Book;
 import org.example.models.Person;
-import org.example.repositories.BooksRepository;
-import org.example.repositories.PeopleRepository;
 import org.example.services.BooksService;
 import org.example.services.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;

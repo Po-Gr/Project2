@@ -58,8 +58,8 @@ public class PeopleService {
     }
 
     @Transactional
-    public void isBookExpired(Date currentDate, int id) {
-        for (Book book: getBooks(id)) {
+    public void areBooksExpired(Date currentDate, List<Book> books) {
+        for (Book book: books) {
             book.setExpired(currentDate.getTime() - book.getTakenAt().getTime() > 864000000L);
         }
     }

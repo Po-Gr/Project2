@@ -103,14 +103,4 @@ public class BooksService {
         book.setTakenAt(new Date());
         person.getBooks().add(book);
     }
-
-//    @Transactional
-//    public void setFree(int id) {
-//        bookDAO.setFree(id);
-//    }
-//
-//    @Transactional
-//    public void setBookToPerson(int id, int personId) {
-//        bookDAO.setBookToPerson(id, personId);
-//    }
 }

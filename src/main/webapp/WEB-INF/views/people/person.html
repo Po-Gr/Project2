@@ -26,11 +26,6 @@
         <a class="books" th:unless="${book.getExpired()}" th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">Есть книги</a>
     </p>
 
-
-<!--    <p class="books" th:unless="${empty}" th:each="book :${books}">-->
-<!--        <a th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">Есть книги</a>-->
-<!--    </p>-->
-
     <hr>
 
     <form th:method="GET" th:action="@{/library/people/{id}/edit(id=${person.getId()})}">

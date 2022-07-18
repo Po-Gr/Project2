@@ -19,12 +19,9 @@ import java.util.List;
 public class PersonController {
     private final PeopleService peopleService;
 
-    private final BooksService booksService;
-
     @Autowired
-    public PersonController(PeopleService peopleService, BooksService booksService) {
+    public PersonController(PeopleService peopleService) {
         this.peopleService = peopleService;
-        this.booksService = booksService;
     }
 
     @GetMapping()
@@ -35,9 +32,10 @@ public class PersonController {
 
     @GetMapping("/{id}")
     public String getPerson(@PathVariable("id")int id, Model model) {
-        peopleService.isBookExpired(new Date(), id);
-
         List<Book> books = peopleService.getBooks(id);
+
+        peopleService.areBooksExpired(new Date(), books);
+
         model.addAttribute("person", peopleService.getPerson(id));
         model.addAttribute("books", books);
         model.addAttribute("empty", books.isEmpty());
