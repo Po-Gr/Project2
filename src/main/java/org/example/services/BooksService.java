@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -100,7 +101,7 @@ public class BooksService {
         Person person = peopleRepository.findById(personId).orElse(null);
 
         book.setReader(person);
-        book.setTakenAt(new Date());
+        book.setTakenAt(Calendar.getInstance());
         person.getBooks().add(book);
     }
 }

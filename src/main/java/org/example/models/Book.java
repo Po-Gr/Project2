@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.Calendar;
 import java.util.Date;
 
 @Entity
@@ -34,7 +35,7 @@ public class Book {
 
     @Column(name = "taken_at")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date takenAt;
+    private Calendar takenAt;
 
     @Transient
     private Boolean isExpired;
@@ -84,11 +85,11 @@ public class Book {
         this.reader = reader;
     }
 
-    public Date getTakenAt() {
+    public Calendar getTakenAt() {
         return takenAt;
     }
 
-    public void setTakenAt(Date takenAt) {
+    public void setTakenAt(Calendar takenAt) {
         this.takenAt = takenAt;
     }
 

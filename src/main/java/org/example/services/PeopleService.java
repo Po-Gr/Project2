@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Transactional(readOnly = true)
@@ -58,9 +56,10 @@ public class PeopleService {
     }
 
     @Transactional
-    public void areBooksExpired(Date currentDate, List<Book> books) {
+    public void areBooksExpired(Calendar currentDate, List<Book> books) {
+        currentDate.add(Calendar.MONTH, -1);
         for (Book book: books) {
-            book.setExpired(currentDate.getTime() - book.getTakenAt().getTime() > 864000000L);
+            book.setExpired(currentDate.after(book.getTakenAt()));
         }
     }
 }

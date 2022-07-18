@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class PersonController {
     public String getPerson(@PathVariable("id")int id, Model model) {
         List<Book> books = peopleService.getBooks(id);
 
-        peopleService.areBooksExpired(new Date(), books);
+        peopleService.areBooksExpired(Calendar.getInstance(), books);
 
         model.addAttribute("person", peopleService.getPerson(id));
         model.addAttribute("books", books);
