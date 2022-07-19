@@ -33,7 +33,8 @@ public class BooksService {
     }
 
     public List<Book> getAllBooks(int page, int booksPerPage, String sortBy) {
-        return booksRepository.findAll(PageRequest.of(page, booksPerPage, Sort.by(sortBy))).getContent();
+        List<Book> a = booksRepository.findAll(PageRequest.of(page, booksPerPage, Sort.by(sortBy))).getContent();
+        return a;
     }
 
     public Book getBook(int id) {

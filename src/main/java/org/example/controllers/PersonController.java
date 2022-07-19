@@ -24,12 +24,6 @@ public class PersonController {
         this.peopleService = peopleService;
     }
 
-//    @GetMapping()
-//    public String getAllPeople(Model model) {
-//        model.addAttribute("people", peopleService.getAllPeople());
-//        return "people/allPeople";
-//    }
-
     @GetMapping()
     public String getAllPeople(Model model, @RequestParam(value = "page", required = false) Integer page,
                                @RequestParam(value = "items_per_page", required = false) Integer itemsPerPage,
@@ -41,7 +35,6 @@ public class PersonController {
 
         return "people/allPeople";
     }
-
 
     @GetMapping("/{id}")
     public String getPerson(@PathVariable("id")int id, Model model) {

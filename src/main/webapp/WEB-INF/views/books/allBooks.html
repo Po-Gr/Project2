@@ -26,13 +26,13 @@
            th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">book</a>
     </div>
 
-    <a class="link2" th:if="${hasPrevious}"
-       th:href="@{/library/books?page={page}&books_per_page={books_per_page}&sort_by_year={sort_by_year}
-       (page=${page - 1},books_per_page=${booksPerPage},sort_by_year=${sortByYear})}">←previous</a>
+    <a class="link2" th:if="${paging.getHasPrevious()}"
+       th:href="@{/library/books?page={page}&items_per_page={items_per_page}&sort_by_year={sort_by_year}
+       (page=${paging.getPage() - 1},items_per_page=${paging.getItemsPerPage()},sort_by_year=${paging.getSortByYear()})}">←previous</a>
 
-    <a class="link2" th:if="${hasNext}"
-       th:href="@{/library/books?page={page}&books_per_page={books_per_page}&sort_by_year={sort_by_year}
-       (page=${page + 1},books_per_page=${booksPerPage},sort_by_year=${sortByYear})}">next→</a>
+    <a class="link2" th:if="${paging.getHasNext()}"
+       th:href="@{/library/books?page={page}&items_per_page={items_per_page}&sort_by_year={sort_by_year}
+       (page=${paging.getPage() + 1},items_per_page=${paging.getItemsPerPage()},sort_by_year=${paging.getSortByYear()})}">next→</a>
 
     <hr>
     <br>

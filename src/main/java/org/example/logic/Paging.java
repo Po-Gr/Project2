@@ -19,34 +19,6 @@ public class Paging {
     private Paging() {
     }
 
-//    private Paging(int page, int itemsPerPage, Boolean sortByYear, String sortBy, boolean hasNext, boolean hasPrevious) {
-//        this.page = page;
-//        this.itemsPerPage = itemsPerPage;
-//        this.sortByYear = sortByYear;
-//        this.sortBy = sortBy;
-//        this.hasNext = hasNext;
-//        this.hasPrevious = hasPrevious;
-//    }
-
-//    public static Paging pageFabric(Object page, Object itemsPerPage, Object sortByYear, int size, Class clazz) {
-//        String sortBy = "fullName";
-//        if (sortByYear == null)
-//            sortByYear = false;
-//        if (sortByYear.equals(true))
-//            sortBy = "birthYear";
-//
-//
-//        if (page == null)
-//            page = 0;
-//        if (itemsPerPage == null)
-//            itemsPerPage = 15;
-//
-//        boolean hasNext = (Integer) page < size / ((Integer) itemsPerPage + 1);
-//        boolean hasPrevious = (Integer) page > 0;
-//
-//        return new Paging((Integer) page, (Integer) itemsPerPage, (Boolean) sortByYear, sortBy, hasNext, hasPrevious);
-//    }
-
     public static Paging pageFabric(Object page, Object itemsPerPage, Object sortByYear, int size, Class clazz) {
         Paging paging = new Paging();
         paging.sortCheck(sortByYear, clazz);

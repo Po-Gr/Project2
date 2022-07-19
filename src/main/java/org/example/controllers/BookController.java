@@ -1,5 +1,6 @@
 package org.example.controllers;
 
+import org.example.logic.Paging;
 import org.example.models.Book;
 import org.example.models.Person;
 import org.example.services.BooksService;
@@ -27,27 +28,12 @@ public class BookController {
 
     @GetMapping()
     public String getAllBooks(@ModelAttribute("searchBy") Book book, Model model, @RequestParam(value = "page", required = false) Integer page,  // посмотреть без атрибута модели
-                              @RequestParam(value = "books_per_page", required = false) Integer booksPerPage,
+                              @RequestParam(value = "items_per_page", required = false) Integer itemsPerPage,
                               @RequestParam(value = "sort_by_year",required = false) Boolean sortByYear) {
-        String sortBy = "title";
-        if (sortByYear == null)
-            sortByYear = false;
-        if (sortByYear)
-            sortBy = "year";
-        if (page == null)
-            page = 0;
-        if (booksPerPage == null)
-            booksPerPage = 15;
-        model.addAttribute("books", booksService.getAllBooks(page, booksPerPage, sortBy));
+        Paging paging = Paging.pageFabric(page, itemsPerPage, sortByYear, peopleService.getAllPeople().size(), Book.class);
 
-
-        model.addAttribute("page", page);
-        model.addAttribute("booksPerPage", booksPerPage);
-        model.addAttribute("sortByYear", sortByYear);
-
-
-        model.addAttribute("hasNext", page < booksService.getAllBooks().size() / (booksPerPage + 1));
-        model.addAttribute("hasPrevious", page > 0);
+        model.addAttribute("books", booksService.getAllBooks(paging.getPage(), paging.getItemsPerPage(), paging.getSortBy()));
+        model.addAttribute("paging", paging);
 
         return "books/allBooks";
     }

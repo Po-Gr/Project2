@@ -35,6 +35,14 @@ h3 {
     transition: color 0.2s linear;
 }
 
+.link2 {
+    color: #c2c7cc;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    transition: color 0.2s linear;
+}
+
 .link:hover {
     color: #000;
 }
