@@ -22,6 +22,9 @@ public class Person {
     @Max(value = 2015, message = "Birth year should be less than 2015")
     private int birthYear;
 
+    @Transient
+    private boolean isDebtor;
+
     @OneToMany(mappedBy = "reader", fetch = FetchType.EAGER)
     private List<Book> books;
 
@@ -66,4 +69,11 @@ public class Person {
         this.books = books;
     }
 
+    public boolean getDebtor() {
+        return isDebtor;
+    }
+
+    public void setDebtor(boolean debtor) {
+        isDebtor = debtor;
+    }
 }

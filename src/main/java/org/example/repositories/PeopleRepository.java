@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface PeopleRepository extends JpaRepository<Person, Integer> {
-
+    List<Person> findByFullNameStartingWith(String letters);
 }

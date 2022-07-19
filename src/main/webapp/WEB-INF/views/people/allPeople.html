@@ -15,6 +15,11 @@
 
     <h3>Читатели библиотеки</h3>
 
+    <form th:method="GET" th:action="@{/library/people/search}" th:object="${searchBy}">
+        <input class="input" type="search" th:field="*{fullName}" id="fullName" placeholder="Введите имя.. "/>
+        <input class="search" type="submit" value="🔍"/>
+    </form>
+
     <div th:each="person :${people}">
         <a class="per_link" th:href="@{/library/people/{id}(id=${person.getId()})}"
            th:text="${person.getFullName() + ', ' + person.getBirthYear()}">person</a>

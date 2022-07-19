@@ -22,6 +22,29 @@ h3 {
     margin: 0 auto;
 }
 
+.input {
+    height: 49px;
+
+    font-size: 22px;
+    font-weight: 100;
+    background-color: rgba(14, 13, 13, 0.5);
+    color: #ffffff;
+
+    border: none;
+    border-radius: 15px 15px 15px 15px;
+
+    font-family: 'Montserrat', 'Raleway', sans-serif;
+}
+
+.search {
+    width: 42px;
+    height: 42px;
+
+    background: transparent;
+
+    border: none;
+}
+
 .link {
     display: inline-block;
     vertical-align: top;
@@ -62,6 +85,18 @@ h3 {
 .per_link:hover {
     color: deeppink;
 }
+
+/*.per_link2 {*/
+/*    font-size: 34px;*/
+/*    color: #fcf4f4;*/
+/*    text-decoration: none;*/
+
+/*    transition: color 0.2s linear;*/
+/*}*/
+
+/*.per_link2:hover {*/
+/*    color: deeppink;*/
+/*}*/
 
 .add {
     color: #00ffb9;

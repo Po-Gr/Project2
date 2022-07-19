@@ -20,23 +20,14 @@
         <input class="search" type="submit" value="🔍"/>
     </form>
 
-    <div th:each="person :${people}">
+    <p th:if="${people.isEmpty()}">Читателей не найдено, проверьте Ваш запрос</p>
+
+    <div th:each="person:${people}">
         <a class="per_link" th:href="@{/library/people/{id}(id=${person.getId()})}"
-           th:text="${person.getFullName() + ', ' + person.getBirthYear()}">person</a>
+           th:text="${person.getFullName() + ', ' + person.getBirthYear()}">book</a>
+        <a th:if="${person.getDebtor()}" th:text="${' ДОЛЖНИК'}">book</a>
     </div>
 
-    <a class="link2" th:if="${paging.getHasPrevious()}"
-       th:href="@{/library/people?page={page}&items_per_page={items_per_page}&sort_by_year={sort_by_year}
-       (page=${paging.getPage() - 1},items_per_page=${paging.getItemsPerPage()},sort_by_year=${paging.getSortByYear()})}">←previous</a>
-
-    <a class="link2" th:if="${paging.getHasNext()}"
-       th:href="@{/library/people?page={page}&items_per_page={items_per_page}&sort_by_year={sort_by_year}
-       (page=${paging.getPage() + 1},items_per_page=${paging.getItemsPerPage()},sort_by_year=${paging.getSortByYear()})}">next→</a>
-
-    <hr>
-    <br>
-
-    <a class="add" th:href="@{/library/people/new}">Добавить человека</a>
 </div>
 
 </body>

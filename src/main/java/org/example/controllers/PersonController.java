@@ -25,7 +25,7 @@ public class PersonController {
     }
 
     @GetMapping()
-    public String getAllPeople(Model model, @RequestParam(value = "page", required = false) Integer page,
+    public String getAllPeople(@ModelAttribute("searchBy") Person person, Model model, @RequestParam(value = "page", required = false) Integer page,
                                @RequestParam(value = "items_per_page", required = false) Integer itemsPerPage,
                                @RequestParam(value = "sort_by_year",required = false) Boolean sortByYear) {
         Paging paging = Paging.pageFabric(page, itemsPerPage, sortByYear, peopleService.getAllPeople().size(), Person.class);
@@ -84,5 +84,19 @@ public class PersonController {
     public String delete(@PathVariable("id")int id) {
         peopleService.delete(id);
         return "redirect:.";
+    }
+
+    @GetMapping("/search")
+    public String searchByFullName(Model model, @RequestParam(value = "fullName", required = false) String startWith,
+                                   @ModelAttribute("searchBy") @Valid Person person, BindingResult bindingResult) {
+
+        if (startWith != null && !startWith.equals("")) {
+            List<Person> people = peopleService.getPeopleByFullNameStarting(startWith);
+            peopleService.isPersonDebtor(Calendar.getInstance(), people);
+            model.addAttribute("people", people);
+            if (bindingResult.hasErrors())
+                return "people/search";
+        }
+        return "people/search";
     }
 }

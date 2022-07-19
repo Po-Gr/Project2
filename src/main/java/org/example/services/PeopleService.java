@@ -40,6 +40,10 @@ public class PeopleService {
         return foundPerson.orElse(null);
     }
 
+    public List<Person> getPeopleByFullNameStarting(String string) {
+        return peopleRepository.findByFullNameStartingWith(string);
+    }
+
     @Transactional
     public void save(Person person) {
         peopleRepository.save(person);
@@ -67,4 +71,31 @@ public class PeopleService {
             book.setExpired(currentDate.after(book.getTakenAt()));
         }
     }
+    @Transactional
+    public void isPersonDebtor(Calendar currentDate, List<Person> people) {
+        currentDate.add(Calendar.MONTH, -1);
+        for (Person person: people) {
+            for (Book book: getBooks(person.getId())) {
+                if (currentDate.after(book.getTakenAt())) {
+                    person.setDebtor(true);
+                    break;
+                }
+                else
+                    person.setDebtor(false);
+            }
+        }
+    }
+//
+//    @Transactional
+//    public void isPersonDebtor2(Calendar currentDate, List<Person> people) {
+//        for (Person person: people) {
+//            List<Book> books = getBooks(person.getId());
+//            areBooksExpired(currentDate, books);
+//            for (Book book: books) {
+//                if (book.getExpired())
+//                    person.setDebtor(true);
+//                    break;
+//            }
+//        }
+//    }
 }
