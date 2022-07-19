@@ -6,6 +6,8 @@ import org.example.models.Person;
 import org.example.repositories.BooksRepository;
 import org.example.repositories.PeopleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +31,9 @@ public class PeopleService {
         return peopleRepository.findAll();
     }
 
+    public List<Person> getAllPeople(int page, int itemsPerPage, String sortBy) {
+        return peopleRepository.findAll(PageRequest.of(page, itemsPerPage, Sort.by(sortBy))).getContent();
+    }
 
     public Person getPerson(int id) {
         Optional<Person> foundPerson = peopleRepository.findById(id);

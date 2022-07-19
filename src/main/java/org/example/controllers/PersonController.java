@@ -1,5 +1,6 @@
 package org.example.controllers;
 
+import org.example.logic.Paging;
 import org.example.models.Book;
 import org.example.models.Person;
 import org.example.services.PeopleService;
@@ -23,11 +24,24 @@ public class PersonController {
         this.peopleService = peopleService;
     }
 
+//    @GetMapping()
+//    public String getAllPeople(Model model) {
+//        model.addAttribute("people", peopleService.getAllPeople());
+//        return "people/allPeople";
+//    }
+
     @GetMapping()
-    public String getAllPeople(Model model) {
-        model.addAttribute("people", peopleService.getAllPeople());
+    public String getAllPeople(Model model, @RequestParam(value = "page", required = false) Integer page,
+                               @RequestParam(value = "items_per_page", required = false) Integer itemsPerPage,
+                               @RequestParam(value = "sort_by_year",required = false) Boolean sortByYear) {
+        Paging paging = Paging.pageFabric(page, itemsPerPage, sortByYear, peopleService.getAllPeople().size(), Person.class);
+
+        model.addAttribute("people", peopleService.getAllPeople(paging.getPage(), paging.getItemsPerPage(), paging.getSortBy()));
+        model.addAttribute("paging", paging);
+
         return "people/allPeople";
     }
+
 
     @GetMapping("/{id}")
     public String getPerson(@PathVariable("id")int id, Model model) {

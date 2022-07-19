@@ -20,6 +20,14 @@
            th:text="${person.getFullName() + ', ' + person.getBirthYear()}">person</a>
     </div>
 
+    <a class="link2" th:if="${paging.getHasPrevious()}"
+       th:href="@{/library/people?page={page}&items_per_page={items_per_page}&sort_by_year={sort_by_year}
+       (page=${paging.getPage() - 1},items_per_page=${paging.getItemsPerPage()},sort_by_year=${paging.getSortByYear()})}">←previous</a>
+
+    <a class="link2" th:if="${paging.getHasNext()}"
+       th:href="@{/library/people?page={page}&items_per_page={items_per_page}&sort_by_year={sort_by_year}
+       (page=${paging.getPage() + 1},items_per_page=${paging.getItemsPerPage()},sort_by_year=${paging.getSortByYear()})}">next→</a>
+
     <hr>
     <br>
 

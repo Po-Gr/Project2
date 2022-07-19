@@ -21,29 +21,18 @@
         <input class="search" type="submit" value="🔍"/>
     </form>
 
-<!--    <form th:method="GET" th:action="@{/library/books/search}" th:object="${searchBy}">-->
-<!--        <label class="label" for="value">Введите название книги: </label>-->
-<!--        <input class="input" type="search" th:field="*{value}" id="value">-->
-<!--        <input class="search" type="submit" value="Искать"/>-->
-<!--    </form>-->
-
-<!--    <form th:method="GET" th:action="@{/library/books/search}" th:object="${searchBy}">-->
-<!--        <label for="title">Введите название книги: </label>-->
-<!--        <input class="input" type="text" th:field="*{title}" id="title"/>-->
-
-<!--        <input class="search" type="submit" value="🔍"/>-->
-<!--    </form>-->
-
     <div th:each="book :${books}">
         <a class="book_link" th:href="@{/library/books/{id}(id=${book.getId()})}"
            th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">book</a>
     </div>
 
     <a class="link2" th:if="${hasPrevious}"
-       th:href="@{/library/books?page={page}&books_per_page={books_per_page}&sort_by_year={sort_by_year}(page=${page - 1},books_per_page=${booksPerPage},sort_by_year=${sortByYear})}">←previous</a>
+       th:href="@{/library/books?page={page}&books_per_page={books_per_page}&sort_by_year={sort_by_year}
+       (page=${page - 1},books_per_page=${booksPerPage},sort_by_year=${sortByYear})}">←previous</a>
 
     <a class="link2" th:if="${hasNext}"
-       th:href="@{/library/books?page={page}&books_per_page={books_per_page}&sort_by_year={sort_by_year}(page=${page + 1},books_per_page=${booksPerPage},sort_by_year=${sortByYear})}">next→</a>
+       th:href="@{/library/books?page={page}&books_per_page={books_per_page}&sort_by_year={sort_by_year}
+       (page=${page + 1},books_per_page=${booksPerPage},sort_by_year=${sortByYear})}">next→</a>
 
     <hr>
     <br>

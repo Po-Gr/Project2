@@ -33,34 +33,6 @@ public class BooksService {
     }
 
     public List<Book> getAllBooks(int page, int booksPerPage, String sortBy) {
-//        if (page == null){
-//            if (sortByYear == null)
-//                return booksRepository.findAll(Sort.by("title"));
-//            else
-//                return booksRepository.findAll(Sort.by("year"));
-//        }
-//        else {
-//            if (sortByYear == null)
-//                return booksRepository.findAll(PageRequest.of((Integer) page, (Integer) booksPerPage, Sort.by("title"))).getContent();
-//            else
-//                return booksRepository.findAll(PageRequest.of((Integer) page, (Integer) booksPerPage, Sort.by("year"))).getContent();
-//        }
-
-
-
-//        String sortBy = "title";
-//        Integer pageNum = 0;
-//        Integer booksCount = 15;
-//
-//        if (sortByYear != null)
-//            sortBy = "year";
-//        if (page != null)
-//            pageNum = (Integer) page;
-//        if (booksPerPage != null)
-//            booksCount = (Integer) booksPerPage;
-//
-//        return booksRepository.findAll(PageRequest.of(pageNum, booksCount, Sort.by(sortBy))).getContent();
-
         return booksRepository.findAll(PageRequest.of(page, booksPerPage, Sort.by(sortBy))).getContent();
     }
 
