@@ -45,6 +45,11 @@ h3 {
     line-height: 0.9;
 }
 
+h1 {
+    font-weight: 400;
+    font-size: 22px;
+}
+
 .none_book {
     font-size: 22px;
     color: #c2c7cc;

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Удаление</title>
+    <link th:href="@{/static/css/book.css}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="container">
+    <div class="link_box">
+        <a class="link" th:href="@{/library/books}">К списку книг</a>
+        <a class="link" th:href="@{/library/people}">К списку читателей</a>
+        <a class="link" th:href="@{/library}">В библиотеку</a>
+    </div>
+
+    <h1 th:text="${'Вы уверены, что хотите удалить книгу: ' + book.getTitle() + '?'}">VALUE</h1>
+
+    <form th:method="GET" th:action="@{/library/books/{id}(id=${book.getId()})}">
+        <input class="upd" type="submit" value="Назад"/>
+    </form>
+
+    </br>
+
+    <form th:method="DELETE" th:action="@{/library/books/{id}(id=${book.getId()})}">
+        <input class="del" type="submit" value="Удалить"/>
+    </form>
+</div>
+
+</body>
+</html>

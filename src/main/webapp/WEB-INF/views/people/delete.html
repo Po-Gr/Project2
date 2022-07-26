@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Удаление</title>
+    <link th:href="@{/static/css/person.css}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="container">
+    <div class="link_box">
+        <a class="link" th:href="@{/library/people}">К списку читателей</a>
+        <a class="link" th:href="@{/library/books}">К списку книг</a>
+        <a class="link" th:href="@{/library}">В библиотеку</a>
+    </div>
+
+    <h1 th:text="${'Вы уверены, что хотите удалить читателя: ' + person.getFullName() + '?'}">VALUE</h1>
+
+    <form th:method="GET" th:action="@{/library/people/{id}(id=${person.getId()})}">
+        <input class="upd" type="submit" value="Назад"/>
+    </form>
+
+    </br>
+
+    <form th:method="DELETE" th:action="@{/library/people/{id}(id=${person.getId()})}">
+        <input class="del" type="submit" value="Удалить"/>
+    </form>
+</div>
+
+</body>
+</html>

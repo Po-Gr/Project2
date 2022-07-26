@@ -76,6 +76,12 @@ public class BookController {
         return "redirect:";
     }
 
+    @GetMapping("/{id}/delete")
+    public String exactDelete(@PathVariable("id") int id, Model model) {
+        model.addAttribute("book", booksService.getBook(id));
+        return "books/delete";
+    }
+
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id")int id) {
         booksService.delete(id);

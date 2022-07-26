@@ -80,6 +80,12 @@ public class PersonController {
         return "redirect:/library/people";
     }
 
+    @GetMapping("/{id}/delete")
+    public String exactDelete(@PathVariable("id") int id, Model model) {
+        model.addAttribute("person", peopleService.getPerson(id));
+        return "people/delete";
+    }
+
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id")int id) {
         peopleService.delete(id);
