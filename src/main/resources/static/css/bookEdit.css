@@ -20,10 +20,15 @@ body {
 }
 
 .input {
+    height: 20px;
+    width: 400px;
+
     font-size: 22px;
     font-weight: 100;
-    background: #b5babd;
-    color: #111111;
+    background-color: rgba(14, 13, 13, 0.5);
+    color: #ffffff;
+
+    border: none;
     border-radius: 15px 15px 15px 15px;
 
     font-family: 'Montserrat', 'Raleway', sans-serif;
@@ -32,10 +37,12 @@ body {
 .upd {
     font-size: 22px;
     font-weight: 100;
-    /*background: #757676;*/
     background: transparent;
     color: #00ffb9;
     border-radius: 15px 15px 15px 15px;
+    border: thin outset #00ffb9;
+    width: 200px;
+    margin-top: 20px;
 
     font-family: 'Montserrat', 'Raleway', sans-serif;
 }

@@ -38,6 +38,19 @@ body {
     justify-content: space-between;
 }
 
+.box {
+    width: 420px;
+    display: flex;
+    justify-content:space-between;
+}
+
+.box form {
+    display: inline-block;
+    vertical-align: top;
+    horiz-align: right;
+    margin: 50px 0 40px 0;
+}
+
 h3 {
     font-weight: 100;
     font-size: 60px;
@@ -45,34 +58,66 @@ h3 {
     line-height: 0.9;
 }
 
+h1 {
+    margin: 183px auto 20px auto;
+    font-weight: 400;
+    font-size: 22px;
+}
+
 .none_book {
     font-size: 22px;
     color: #c2c7cc;
 }
 
-.with_book {
+.books {
+    background: rgba(14, 13, 13, 0.5);
+    width: 700px;
+    border: none;
+    border-radius: 15px;
+}
+
+.books .with {
     font-size: 22px;
     font-weight: 200;
     line-height: 0.5;
+    margin-left: 20px;
 }
 
-.books {
+.books .good {
     font-size: 22px;
     line-height: 0.5;
+    margin-left: 20px;
+    color: #fcf4f4;
+    text-decoration: none;
+
+    transition: color 0.2s linear;
 }
 
-.books_exp {
+.books .good:hover {
+    color: #abb2b9;
+}
+
+.books .exp {
     font-size: 22px;
     line-height: 0.5;
     color: deeppink;
+    margin-left: 20px;
+    text-decoration: none;
+
+    transition: color 0.2s linear;
+}
+
+.books .exp:hover {
+    color: #fd93c2;
 }
 
 .upd {
     background: transparent;
-    /*background: #3e3e41;*/
     color: #fcf4f4;
     border-radius: 15px 15px 15px 15px;
+    border: thin outset #fcf4f4;
 
+    width: 200px;
     font-size: 22px;
     font-weight: 100;
 
@@ -81,10 +126,11 @@ h3 {
 
 .del {
     background: transparent;
-    /*background: #3e3e41;*/
     color: deeppink;
     border-radius: 15px 15px 15px 15px;
+    border: thin outset deeppink;
 
+    width: 200px;
     font-size: 22px;
     font-weight: 100;
 

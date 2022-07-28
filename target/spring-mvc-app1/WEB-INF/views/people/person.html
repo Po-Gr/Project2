@@ -17,30 +17,29 @@
     <h3 th:text="${person.getFullName() + ', ' + person.getBirthYear()}">VALUE</h3>
 
     <p class="none_book" th:if="${empty}">Человек пока не взял ни одной книги</p>
-    <hr th:unless="${empty}">
 
-    <a class="with_book" th:unless="${empty}">Книги:</a>
+    <div class="books" th:unless="${empty}">
+        <br>
+        <a class="with" >Книги:</a>
+        <div th:each="book :${books}">
+            <a class="exp" th:if="${book.getExpired()}" th:href="@{/library/books/{id}(id=${book.getId()})}"
+               th:text="${book.getTitle() + ', ' + book.getAuthor()}">Есть книги</a>
+            <a class="good" th:unless="${book.getExpired()}" th:href="@{/library/books/{id}(id=${book.getId()})}"
+               th:text="${book.getTitle() + ', ' + book.getAuthor()}">Есть книги</a>
+        </div>
+        <br>
+    </div>
 
-    <p th:unless="${empty}" th:each="book :${books}">
-        <a class="books_exp" th:if="${book.getExpired()}" th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">Есть книги</a>
-        <a class="books" th:unless="${book.getExpired()}" th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">Есть книги</a>
-    </p>
+    <div class="box">
+        <form th:method="GET" th:action="@{/library/people/{id}/edit(id=${person.getId()})}">
+            <input class="upd" type="submit" value="Редактировать"/>
+        </form>
 
-    <hr>
+        <form th:method="GET" th:action="@{/library/people/{id}/delete(id=${person.getId()})}">
+            <input class="del" type="submit" value="Удалить"/>
+        </form>
+    </div>
 
-    <form th:method="GET" th:action="@{/library/people/{id}/edit(id=${person.getId()})}">
-        <input class="upd" type="submit" value="Редактировать"/>
-    </form>
-
-    </br>
-
-    <form th:method="GET" th:action="@{/library/people/{id}/delete(id=${person.getId()})}">
-        <input class="del" type="submit" value="Удалить"/>
-    </form>
-
-<!--    <form th:method="DELETE" th:action="@{/library/people/{id}(id=${person.getId()})}">-->
-<!--        <input class="del" type="submit" value="Удалить"/>-->
-<!--    </form>-->
 </div>
 
 </body>

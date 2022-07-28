@@ -92,9 +92,6 @@ h3 {
 }
 
 .link_box {
-    /*background-size: cover;*/
-    /*background-color: rgba(14, 13, 13, 0.5);*/
-
     display: flex;
     justify-content: space-between;
 }

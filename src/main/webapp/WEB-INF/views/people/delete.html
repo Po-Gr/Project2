@@ -8,23 +8,19 @@
 <body>
 
 <div class="container">
-    <div class="link_box">
-        <a class="link" th:href="@{/library/people}">К списку читателей</a>
-        <a class="link" th:href="@{/library/books}">К списку книг</a>
-        <a class="link" th:href="@{/library}">В библиотеку</a>
-    </div>
 
     <h1 th:text="${'Вы уверены, что хотите удалить читателя: ' + person.getFullName() + '?'}">VALUE</h1>
 
-    <form th:method="GET" th:action="@{/library/people/{id}(id=${person.getId()})}">
-        <input class="upd" type="submit" value="Назад"/>
-    </form>
+    <div class="box">
+        <form th:method="DELETE" th:action="@{/library/people/{id}(id=${person.getId()})}">
+            <input class="del" type="submit" value="Удалить"/>
+        </form>
 
-    </br>
+        <form th:method="GET" th:action="@{/library/people/{id}(id=${person.getId()})}">
+            <input class="upd" type="submit" value="Назад"/>
+        </form>
+    </div>
 
-    <form th:method="DELETE" th:action="@{/library/people/{id}(id=${person.getId()})}">
-        <input class="del" type="submit" value="Удалить"/>
-    </form>
 </div>
 
 </body>

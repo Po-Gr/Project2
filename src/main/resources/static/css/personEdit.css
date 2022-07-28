@@ -21,7 +21,7 @@ body {
 }
 
 .input {
-    /*height: 49px;*/
+    height: 20px;
     width: 400px;
 
     font-size: 22px;
@@ -38,10 +38,12 @@ body {
 .upd {
     font-size: 22px;
     font-weight: 100;
-    /*background: #473e41;*/
     background: transparent;
     color: #00ffb9;
     border-radius: 15px 15px 15px 15px;
+    border: thin outset #00ffb9;
+    width: 200px;
+    margin-top: 20px;
 
     font-family: 'Montserrat', 'Raleway', sans-serif;
 }
